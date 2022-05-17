@@ -14,17 +14,15 @@ public class MainDriver {
         cs.createAccount(newClient);
         */
 
-        Client someone = new Client("jj12", "xyz");
+        Client someone = new Client("jj123", "xyz");
         boolean flag = cs.login(someone);
         if (flag == true) {
             System.out.println("Logged in");
+            // cs.depositFunds(someone, 42);
+            // cs.withdrawFunds(someone,34);
+            cs.viewBalance(someone);
         }
         else System.out.println("Could not log you in");
 
-        /*
-        cs.depositFunds();
-        cs.withdrawFunds();
-        cs.viewBalance();
-        */
     }
 }

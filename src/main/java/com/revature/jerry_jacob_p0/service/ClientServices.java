@@ -23,4 +23,17 @@ public class ClientServices {
         return flag;
 
     }
+
+    public void depositFunds(Client s, double funds) {
+        clientDao.depositFunds(s, funds);
+    }
+
+    public void withdrawFunds(Client s, double funds) {
+        clientDao.withdrawFunds(s, funds);
+    }
+
+    public void viewBalance(Client s) {
+        double balance = clientDao.getBalance(s);
+        System.out.println("Your balance is $" + balance);
+    }
 }

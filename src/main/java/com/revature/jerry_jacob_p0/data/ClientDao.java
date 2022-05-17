@@ -49,4 +49,52 @@ public class ClientDao {
             return false;
         }
     }
+
+    public void depositFunds(Client s, double funds) {
+        try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
+            String sql = "update client set balance = balance + ? where uname = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setDouble(1, funds);
+            ps.setString(2, s.getUname());
+
+            ps.executeUpdate();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void withdrawFunds(Client s, double funds) {
+        try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
+            String sql = "update client set balance = balance - ? where uname = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setDouble(1, funds);
+            ps.setString(2, s.getUname());
+
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+public double balance;
+    public double getBalance(Client s) {
+
+        try(Connection conn = ConnectionFactory.getInstance().getConnection()){
+            String sql = "select * from client where uname = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, s.getUname());
+
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()) {balance = rs.getDouble("balance");}
+
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return balance;
+
+    }
 }
