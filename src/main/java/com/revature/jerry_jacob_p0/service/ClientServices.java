@@ -14,4 +14,13 @@ public class ClientServices {
         }
         return true;
     }
+
+    public boolean login(Client s) {
+        if(s.getUname() == null || s.getUname().trim().equals("") || s.getPword() == null || s.getPword().trim().equals("")) {
+            throw new RuntimeException();
+        }
+        boolean flag = clientDao.authenticateClient(s);
+        return flag;
+
+    }
 }

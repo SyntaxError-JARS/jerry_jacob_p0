@@ -2,6 +2,7 @@ package com.revature.jerry_jacob_p0.data;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ClientDao {
@@ -27,5 +28,25 @@ public class ClientDao {
             return null;
         }
         return newClient;
+    }
+
+    public boolean authenticateClient(Client s) {
+
+        try(Connection conn = ConnectionFactory.getInstance().getConnection()){
+            String sql = "select * from client where uname = ? and pword = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, s.getUname());
+            ps.setString(2, s.getPword());
+
+            ResultSet rs = ps.executeQuery();
+
+            if(!rs.isBeforeFirst()){
+                return false;
+            }
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }

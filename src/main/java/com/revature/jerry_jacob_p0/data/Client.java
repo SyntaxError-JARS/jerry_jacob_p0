@@ -27,7 +27,10 @@ public class Client {
         this.balance = balance;
     }
 
-    public Client(String pword) { this.pword = pword; }
+    public Client(String uname, String pword) {
+        this.uname = uname;
+        this.pword = pword;
+    }
 
     public Client() {}
 

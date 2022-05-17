@@ -6,12 +6,22 @@ import com.revature.jerry_jacob_p0.service.ClientServices;
 public class MainDriver {
 
     public static void main(String[] args) {
-        Client newClient = new Client("jerry", "jacob", "jj123", "xyz", 50);
+
         ClientServices cs = new ClientServices();
-        cs.createAccount(newClient);
 
         /*
-        cs.login();
+        Client newClient = new Client("jerry", "jacob", "jj123", "xyz", 50);
+        cs.createAccount(newClient);
+        */
+
+        Client someone = new Client("jj12", "xyz");
+        boolean flag = cs.login(someone);
+        if (flag == true) {
+            System.out.println("Logged in");
+        }
+        else System.out.println("Could not log you in");
+
+        /*
         cs.depositFunds();
         cs.withdrawFunds();
         cs.viewBalance();
