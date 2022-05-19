@@ -44,11 +44,16 @@ public class LoginServlet extends HttpServlet {
         if (funds.getNew_credit() > 0) {
             cs.depositFunds(authenticatedClient, funds);
             funds.setNew_credit(0);
+            resp.getWriter().write("Click CHECK BALANCE to see your balance. \n");
+            resp.getWriter().write("In future version of the app, you will be able to see your balance right here.");
         }
         else if (funds.getNew_debit() > 0) {
             cs.withdrawFunds(authenticatedClient, funds);
             funds.setNew_debit(0);
+            resp.getWriter().write("Click CHECK BALANCE to see your balance. \n");
+            resp.getWriter().write("In future version of the app, you will be able to see your balance right here.");
         }
+        else resp.getWriter().write("Invalid amount");
     }
     //---------VIEW BALANCE---------
     @Override
